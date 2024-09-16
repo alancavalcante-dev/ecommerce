@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce</title>
+    <link rel="stylesheet" href="{% static 'ecommerce/css/style_base.css' %}">
+</head>
+<body>
+
+<header>
+    
+    
+    <div>
+        Pesquisa
+    </div>
+
+
+    <nav>
+        <li>Teste 1</li>
+        <li>Teste 2</li>
+        <li>Teste 3</li>
+    </nav>
+
+    <div>
+        Carrinho
+    </div>
+</header>
+    
+<main>
+    {% block main %}    {% endblock %}
+</main>
+
+</body>
+</html>
