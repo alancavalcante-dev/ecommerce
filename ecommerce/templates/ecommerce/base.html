@@ -6,32 +6,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce</title>
+    <link rel="icon" type="image/png" href="{% static 'ecommerce/images/favicon.png' %}">
     <link rel="stylesheet" href="{% static 'ecommerce/css/style_base.css' %}">
 </head>
 <body>
 
 <header>
-    
-    
-    <div>
-        Pesquisa
-    </div>
+    <img id="header-logotipo" src="{% static 'ecommerce/images/logotipo.png' %}" alt="">
 
+        <div id="search-product">
+            <div>
+                <input type="search" placeholder="Pesquisar">
+                <a href="#">
+                    <img src="{% static 'ecommerce/images/icons-pesquisar.png' %}" alt="">
+                </a>
+            </div>
+        </div>
 
     <nav>
-        <li>Teste 1</li>
-        <li>Teste 2</li>
-        <li>Teste 3</li>
+        <a href="#"><li>Roupas</li></a>
+        <a href="#"><li>Calçados</li></a>
+        <a href="#"><li>Acessórios</li></a>
+        <a href="#"><li>Veículos</li></a>
+        <a href="#"><li>Eletrônicos</li></a>
+        <a href="#"><li>Construção</li></a>
+        <a href="#"><li>Casa</li></a>
+        <a href="#"><li>Esportes</li></a>
+        <a href="#"><li>Contato</li></a>
     </nav>
-
-    <div>
-        Carrinho
-    </div>
 </header>
     
 <main>
-    {% block main %}    {% endblock %}
+    {% block main %} {% endblock %}
 </main>
 
+
+<footer>
+    <div id="footer-center">
+        <div class="display-flex">
+            <div>
+                <h5>ATENDIMENTO AO CLIENTE</h5>
+                <p><a href="#">Central de Ajuda</a></p>
+                <p><a href="#">Como comprar</a></p>
+                <p><a href="#">Métodos de Pagamento</a></p>
+                <p><a href="#">Garantia</a></p>
+                <p><a href="#">Devolução e Reembolso</a></p>
+                <p><a href="#">Fale Conosco</a></p>
+                <p><a href="#">Ouvidoria</a></p>
+                <p><a href="#">Preferências de Cookies</a></p>
+            </div>
+
+            <div>
+                <h5>SOBRE O ECOMMERCE</h5>
+                <p><a href="#">Sobre Nós</a></p>
+                <p><a href="#">Politícas Alan</a></p>
+                <p><a href="#">Política de Privacidade</a></p>
+                <p><a href="#">Programa de Afiliados da Alan</a></p>
+                <p><a href="#">Seja um Entregador Alan</a></p>
+                <p><a href="#">Ofertas Relâmpago</a></p>
+                <p><a href="#">Alan Blog</a></p>
+                <p><a href="#">Imprensa</a></p>
+            </div>
+
+            <div >
+                <h5>PAGAMENTO</h5>
+                <div id="footer-pagamento">
+                    <div>
+                        <img src="{% static 'ecommerce/images/payments/visa.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/payments/american_express.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/payments/boleto.png' %}" alt="">
+                    </div>
+
+                    <div>
+                        <img src="{% static 'ecommerce/images/payments/pix.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/payments/hipercard.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/payments/mastercard.png' %}" alt="">
+                    </div>
+
+                    <div>
+                        <img src="{% static 'ecommerce/images/payments/elo.png' %}" alt="">
+                    </div>
+                        
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        <div id="dados-footer">
+            <p>@ 2024 ecommerce Alan. Todos os direitos reservados</p>
+            <p>País e região: Brasil</p>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'ecommerce/js/scripts_base.js' %}"></script>
 </body>
 </html>

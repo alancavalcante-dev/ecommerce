@@ -1,9 +1,26 @@
 {% extends "ecommerce/base.html" %}
+{% load custom_filters %}
 
 {% block main %}
-<div>
-    --{{ request.user }}--
-</div>
-    <p>Home</p>
+
+    <section class="dashbord-products">
+        {% if tam_teste > 0 %}
+            {% for i in teste %}
+                <a class="link-product" href="#">
+                    <div class="product">
+                        <h3>{{ i.name }}<h3>
+                        <h4>{{ i.seller.enterprise_name }}</h4>
+                        <div>
+                            <img src="{{ i.image }}"><br>
+                        </div>
+                        <p>R$ <span style="font-size: 18px;font-weight: bold;">{{ i.value|format_brl }}</span></p>
+                        <!--<p>{{ i.quantity }}</p>-->
+                        <!--<p>Publicado: {{ i.release_date }}</p>-->
+                    </div>
+                </a>
+            {% endfor %}
+        {% endif %}
+    </section>
+
 {% endblock %}
 
