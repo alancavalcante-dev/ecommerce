@@ -1,0 +1,22 @@
+{% extends "ecommerce/base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+
+
+{% block main %}
+
+    <section id="product-select">
+        {{ product }}
+
+        <div>
+            <img src="{{ product.image }}" alt="">
+        </div>
+
+        <div>
+            
+        </div>
+    </section>
+
+{% endblock %}
+

@@ -30,21 +30,20 @@ header {
 }
 
 
-
 #header-top {
     display: flex;
     justify-content: center;
 }
 
 #search-product {
-    width: 650px;
+    max-width: 700px;
     margin: 0 auto;
     background-color: white;
     padding: 3px;
     border-radius: 5px;
 }
 
-#search-product div {
+#search-product form {
     display: flex;
     justify-content: left;
     gap: 5px;
@@ -63,9 +62,8 @@ header {
 
 
 #search-product a {
-    background-color: #0b9275;
     border-radius: 5px;
-    height: 40px;
+    width: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,9 +74,19 @@ header {
     background-color: #43b199;
 }
 
-#search-product img {
+#search-product form img {
     width: 80%;
 
+}
+
+#searchIcon {
+    background-color: #0b9275;
+
+}
+
+#cart {
+    background-color: white;
+    
 }
 
 

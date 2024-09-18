@@ -8,30 +8,35 @@
     <title>E-Commerce</title>
     <link rel="icon" type="image/png" href="{% static 'ecommerce/images/favicon.png' %}">
     <link rel="stylesheet" href="{% static 'ecommerce/css/style_base.css' %}">
+    <link rel="stylesheet" href="{% static 'ecommerce/css/style_product.css' %}">
+
 </head>
 <body>
 
 <header>
-    <img id="header-logotipo" src="{% static 'ecommerce/images/logotipo.png' %}" alt="">
+    <img id="header-logotipo" src="{% static 'ecommerce/images/logotipo.png' %}" alt="" draggable="false">
 
         <div id="search-product">
-            <div>
-                <input type="search" placeholder="Pesquisar">
-                <a href="#">
-                    <img src="{% static 'ecommerce/images/icons-pesquisar.png' %}" alt="">
+            <form id="searchForm" action="{% url 'home' %}" method="GET"> 
+                <input type="search" name="search" placeholder="Pesquisar">
+                <a href="#" id="searchIcon">
+                    <img src="{% static 'ecommerce/images/icons-pesquisar.png' %}" alt="Pesquisar" draggable="false">
                 </a>
-            </div>
+                <a id="cart" href="{% url 'cart' %}">
+                    <img src="{% static 'ecommerce/images/icon-cart.png' %}" alt="Carrinho" draggable="false">
+                </a>
+            </form>
         </div>
 
     <nav>
-        <a href="#"><li>Roupas</li></a>
-        <a href="#"><li>Calçados</li></a>
-        <a href="#"><li>Acessórios</li></a>
-        <a href="#"><li>Veículos</li></a>
-        <a href="#"><li>Eletrônicos</li></a>
-        <a href="#"><li>Construção</li></a>
-        <a href="#"><li>Casa</li></a>
-        <a href="#"><li>Esportes</li></a>
+        <a href="{% url 'home'  %}?search=Roupas"><li>Roupas</li></a>
+        <a href="{% url 'home'  %}?search=Calçados"><li>Calçados</li></a>
+        <a href="{% url 'home'  %}?search=Acessórios"><li>Acessórios</li></a>
+        <a href="{% url 'home'  %}?search=Veículos"><li>Veículos</li></a>
+        <a href="{% url 'home'  %}?search=Eletrônicos"><li>Eletrônicos</li></a>
+        <a href="{% url 'home'  %}?search=Construção"><li>Construção</li></a>
+        <a href="{% url 'home'  %}?search=Casa"><li>Casa</li></a>
+        <a href="{% url 'home'  %}?search=Esportes"><li>Esportes</li></a>
         <a href="#"><li>Contato</li></a>
     </nav>
 </header>
@@ -72,19 +77,19 @@
                 <h5>PAGAMENTO</h5>
                 <div id="footer-pagamento">
                     <div>
-                        <img src="{% static 'ecommerce/images/payments/visa.png' %}" alt="">
-                        <img src="{% static 'ecommerce/images/payments/american_express.png' %}" alt="">
-                        <img src="{% static 'ecommerce/images/payments/boleto.png' %}" alt="">
+                        <img draggable="false" src="{% static 'ecommerce/images/payments/visa.png' %}" alt="">
+                        <img draggable="false" src="{% static 'ecommerce/images/payments/american_express.png' %}" alt="">
+                        <img draggable="false" src="{% static 'ecommerce/images/payments/boleto.png' %}" alt="">
                     </div>
 
                     <div>
-                        <img src="{% static 'ecommerce/images/payments/pix.png' %}" alt="">
-                        <img src="{% static 'ecommerce/images/payments/hipercard.png' %}" alt="">
-                        <img src="{% static 'ecommerce/images/payments/mastercard.png' %}" alt="">
+                        <img draggable="false" src="{% static 'ecommerce/images/payments/pix.png' %}" alt="">
+                        <img draggable="false" src="{% static 'ecommerce/images/payments/hipercard.png' %}" alt="">
+                        <img draggable="false" src="{% static 'ecommerce/images/payments/mastercard.png' %}" alt="">
                     </div>
 
                     <div>
-                        <img src="{% static 'ecommerce/images/payments/elo.png' %}" alt="">
+                        <img draggable="false" src="{% static 'ecommerce/images/payments/elo.png' %}" alt="">
                     </div>
                         
                 </div>
