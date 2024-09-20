@@ -6,14 +6,15 @@
     <section class="dashbord-products">
         {% if tam_response > 0 %}
             {% for i in response %}
-                <a class="link-product" href="#">
+                <a class="link-product" href="{% url 'product' i.id %}">
                     <div class="product">
-                        <h3>{{ i.name }}<h3>
+                        <h1>{{ i.name }}</h1>
                         <h4>{{ i.seller.enterprise_name }}</h4>
                         <div>
                             <img src="{{ i.image }}" draggable="false"><br>
                         </div>
                         <p>R$ <span style="font-size: 18px;font-weight: bold;">{{ i.value|format_brl }}</span></p>
+                        
                         <!--<p>{{ i.quantity }}</p>-->
                         <!--<p>Publicado: {{ i.release_date }}</p>-->
                     </div>

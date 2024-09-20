@@ -7,14 +7,24 @@
 {% block main %}
 
     <section id="product-select">
-        {{ product }}
 
-        <div>
-            <img src="{{ product.image }}" alt="">
+        <div class="display-flex">
+
+            <div id="image-view">
+                <img src="{{ product.image }}" alt="">
+            </div>
+            
         </div>
 
-        <div>
-            
+        <div  class="display-flex">
+            <h3>{{ product.name }}</h3>
+            <div>
+                <p>⭐⭐⭐⭐</p><p>Compras</p>
+            </div>
+            <h4>{{ product.seller.enterprise_name }}</h4>
+            <div>{{ product.value }}</div>
+            <p>Quantidade: <input type="number" value="1"></p>
+            <p>{{ product.resume }}</p>
         </div>
     </section>
 
