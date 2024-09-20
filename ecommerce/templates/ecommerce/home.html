@@ -8,7 +8,7 @@
             {% for i in response %}
                 <a class="link-product" href="{% url 'product' i.id %}">
                     <div class="product">
-                        <h1>{{ i.name }}</h1>
+                        <h3>{{ i.name }}</h3>
                         <h4>{{ i.seller.enterprise_name }}</h4>
                         <div>
                             <img src="{{ i.image }}" draggable="false"><br>
