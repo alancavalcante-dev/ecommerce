@@ -15,78 +15,8 @@ main {
 
 
 header {
-    position: relative;
     background: linear-gradient(to right, #01c0b0, #07ebba);
-    height: 90px;
-    padding-top: 5px;
-}
-
-#header-logotipo {
-    position: absolute;
-    top: -5px;
-    left: 10px;
-    width: 110px;
-
-}
-
-
-#header-top {
-    display: flex;
-    justify-content: center;
-}
-
-#search-product {
-    max-width: 700px;
-    margin: 0 auto;
-    background-color: white;
-    padding: 3px;
-    border-radius: 5px;
-}
-
-#search-product form {
-    display: flex;
-    justify-content: left;
-    gap: 5px;
-}
-
-#search-product input {
-    font-size: 17px;
-    border-radius: 3px;
-    border: 1px solid rgba(0, 0, 0, 0.425);
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 8px 17px;
-    min-width: 600px;
-    height: 40px;
-}
-
-
-
-#search-product a {
-    border-radius: 5px;
-    width: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-#search-product a:hover {
-    background-color: #43b199;
-}
-
-#search-product form img {
-    width: 80%;
-
-}
-
-#searchIcon {
-    background-color: #0b9275;
-
-}
-
-#cart {
-    background-color: white;
-    
+    height: 113px;
 }
 
 
@@ -107,6 +37,68 @@ nav a {
 nav a:hover {
     color: #001b19;
 }
+
+
+#header-top {
+    padding: 10px 10px 0px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#header-top img {
+    width: 40px;
+}
+
+#header-top a {
+    display: block;
+}
+
+header form {
+    display: flex;
+    justify-content: center;
+    gap: 3%;
+    align-items: center;
+
+}
+
+header form a:hover {
+    filter: brightness(70%);
+}
+
+header form input {
+    width: 100%;
+    padding: 5px 15px;
+    font-size: 18px;
+}
+
+
+header form div {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    background-color: white;
+    width: 600px;
+    max-width: 1100px;
+    border-radius: 4px;
+    padding: 4px;
+
+}
+
+#searchIcon{
+    border-radius: 4px;
+    background-color: #05ac88;
+}
+
+#user {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+
+
+
 
 
 footer {
@@ -243,3 +235,4 @@ footer a:hover {
 .link-product {
     text-decoration: none;
 }
+

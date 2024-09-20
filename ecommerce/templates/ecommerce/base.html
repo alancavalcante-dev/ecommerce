@@ -13,22 +13,30 @@
 </head>
 <body>
 
-<header>
-    <img id="header-logotipo" src="{% static 'ecommerce/images/logotipo.png' %}" alt="" draggable="false">
 
-        <div id="search-product">
-            <form id="searchForm" action="{% url 'home' %}" method="GET"> 
+<header>
+    <div id="header-top">
+        <form id="searchForm" action="{% url 'home' %}" method="GET">
+            <div>
                 <input type="search" name="search" placeholder="Pesquisar">
+            
                 <a href="#" id="searchIcon">
                     <img src="{% static 'ecommerce/images/icons-pesquisar.png' %}" alt="Pesquisar" draggable="false">
                 </a>
-                <a id="cart" href="{% url 'cart' %}">
-                    <img src="{% static 'ecommerce/images/icon-cart.png' %}" alt="Carrinho" draggable="false">
-                </a>
-            </form>
-        </div>
+            </div>
+
+            <a id="cart" href="{% url 'cart' %}">
+                <img src="{% static 'ecommerce/images/icon-cart.png' %}" alt="Carrinho" draggable="false">
+            </a>
+
+            <a id="user" href="#"><span> alanpereira@ </span></a>
+        </form>
+
+    </div>
+
 
     <nav>
+        <a href="{% url 'home'  %}"><li>Home</li></a>
         <a href="{% url 'home'  %}?search=Roupas"><li>Roupas</li></a>
         <a href="{% url 'home'  %}?search=Calçados"><li>Calçados</li></a>
         <a href="{% url 'home'  %}?search=Acessórios"><li>Acessórios</li></a>
@@ -40,7 +48,8 @@
         <a href="#"><li>Contato</li></a>
     </nav>
 </header>
-    
+
+
 <main>
     {% block main %} {% endblock %}
 </main>
