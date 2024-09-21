@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
-from ecommerce.views import (
+from authentication.views import (
     LoginView,
-    RegisterView
+    RegisterView,
+    RetrieveView
 )
 
 
@@ -19,6 +20,7 @@ urlpatterns = [
 
     path('login/', LoginView.as_view(), name='login'),
     path('register/', RegisterView.as_view(), name='register'),
+    path('retrieve/', RetrieveView.as_view(), name='retrieve'),
 
     path('', include('ecommerce.urls')),
 

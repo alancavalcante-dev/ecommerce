@@ -1,0 +1,35 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+
+{% block title_page %}Login{% endblock %}
+
+{% block form_authentication %}
+
+<h2> Entre </h2>
+
+<form action="{% url 'login' %}" method="POST">
+    {% csrf_token %}
+    <div class="input-group">
+        <input type="text" name="username" placeholder="Nome de Usuário" required>
+    </div>
+    <div class="input-group">
+        <input id="password" type="password" name="password" placeholder="Senha" required>
+        <span class="show-password" onclick="togglePassword()">&#128065;</span>
+    </div>
+    <button type="submit" class="btn">ENTRAR</button>
+    <div class="options">
+        <a href="#">Esqueci minha senha</a>
+        <a href="#">Fazer login com SMS</a>
+    </div>
+</form>
+
+
+<div class="social-login">
+    <p>OU</p>
+    <button class="btn-social">Facebook</button>
+    <button class="btn-social">Google</button>
+    <button class="btn-social">Apple</button>
+</div>
+<p>Novo no ecommerce Alan? <a href="{% url 'register' %}">Cadastrar</a></p>
+
+{% endblock %}

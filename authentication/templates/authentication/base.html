@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title_page %}{% endblock %} - ecommerce Alan</title>
+    <link rel="stylesheet" href="{% static 'authentication/css/style_base.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">ecommerce Alan</div>
+            <ul class="nav-links">
+                <li><a href="#">Precisa de ajuda?</a></li>
+                <li><a href="{% url 'home' %}">Ir para o Home</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="left-section">
+            {% block form_authentication %}
+            
+
+            {% endblock %}
+        </div>
+
+        <div class="right-section">
+            <img src="{% static 'ecommerce/images/logotipo.png' %}" alt="ecommerce Alan">
+            <h2>ecommerce Alan</h2>
+            <p>A melhor plataforma de compras online</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 ecommerce Alan. Todos os direitos reservados.</p>
+    </footer>
+
+<script src="{% static 'authentication/js/scripts.js' %}"></script>
+</body>
+</html>

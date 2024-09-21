@@ -1,13 +1,2 @@
-{% extends "ecommerce/base_acess.html" %}
-
-{% block main %}
-    <p>Login</p>
-
-    <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
-        <input name="username" type="text" placeholder="Usuário"><br>
-        <input name="password" type="password"><br>
-        <input type="submit">
-    </form>
-    {{ error }}
-{% endblock %}
+{% extends "authentication/base.html" %}
+{% load static %}
