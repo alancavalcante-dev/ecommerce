@@ -82,7 +82,7 @@ class ProductView(generic.View):
 
     def get(self, request, pk):
         response = consulta(request, f'products/{pk}/')
-
+        print(response.text)
         return render(
             request,
             'ecommerce/product.html', {
