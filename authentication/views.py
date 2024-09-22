@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import generic
+from django.contrib.auth import logout
 import requests
 
 
@@ -36,6 +37,12 @@ class LoginView(generic.View):
         )
 
         
+
+class LogoutView(generic.View):
+    
+    def get(self, request):
+        logout(request)
+        return redirect('home')
     
 
 class RegisterView(generic.View):

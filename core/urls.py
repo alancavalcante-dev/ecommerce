@@ -3,7 +3,8 @@ from django.urls import path, include
 from authentication.views import (
     LoginView,
     RegisterView,
-    RetrieveView
+    RetrieveView,
+    LogoutView
 )
 
 
@@ -21,6 +22,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('register/', RegisterView.as_view(), name='register'),
     path('retrieve/', RetrieveView.as_view(), name='retrieve'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 
     path('', include('ecommerce.urls')),
 

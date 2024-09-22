@@ -29,11 +29,15 @@
                 <img src="{% static 'ecommerce/images/icon-cart.png' %}" alt="Carrinho" draggable="false">
             </a>
 
-            <a id="user" href="#"><span> {{ request.user }} </span></a>
+            {% if username %}
+                <a class="auth-user" href="#"><span> {{ username }} </span></a>
+                <a class="auth-user" href="{% url 'logout' %}"><span> Sair </span></a>
+            {% else %}         
+                <a class="auth-user" href="{% url 'login' %}">Entrar/Registrar</a>   
+            {% endif %}
         </form>
-
+        
     </div>
-
 
     <nav>
         <a href="{% url 'home'  %}"><li>Home</li></a>

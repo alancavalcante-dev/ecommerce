@@ -79,10 +79,22 @@ header form div {
     gap: 5px;
     background-color: white;
     width: 600px;
-    max-width: 1100px;
+    max-width: 600px;
     border-radius: 4px;
     padding: 4px;
 
+}
+
+
+@media  (max-width: 790px) {
+    header form div {
+        width: 400px;
+    }
+
+    nav a {
+        padding: 4px 8px;
+        font-size: 13px;
+    }
 }
 
 #searchIcon{
@@ -90,7 +102,7 @@ header form div {
     background-color: #05ac88;
 }
 
-#user {
+.auth-user {
     display: block;
     text-decoration: none;
     color: white;
