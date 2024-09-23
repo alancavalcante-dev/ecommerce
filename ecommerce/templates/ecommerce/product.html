@@ -121,14 +121,23 @@
 
             const quantityInput = document.querySelector('.quantity-input');
             const quantityValue = quantityInput.value;
+            const productId = '{{ product.id }}'
+            const data = {
+                    quantity: quantityValue,
+                    product: productId
+                }
+            
+            
 
-            var url = 'http://127.0.0.1:8000/api/v1/cart/product/{{ product.id }}/quantity/' + quantityValue + '/';
+            var url = 'http://127.0.0.1:8000/api/v1/cart/add/'
             fetch(url, {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer '+ token,
                     'Content-Type': 'application/json'
-                }
+                },
+                body: JSON.stringify(data) // Serializando o conteúdo para enviar no corpo da requisição
+
             })
             .then(response => response.json())
             .then(data => {
