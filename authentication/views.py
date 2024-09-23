@@ -25,8 +25,10 @@ class LoginView(generic.View):
 
         if response.status_code == 200:
             tokens = response.json()
+
             request.session['access_token'] = tokens['access']
             request.session['refresh_token'] = tokens['refresh']  
+
             return redirect('home')
 
         return render(

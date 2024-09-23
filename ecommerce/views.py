@@ -5,6 +5,9 @@ import requests
 from datetime import datetime as dt
 
 def consulta_token(request) -> bool:
+    """
+    Consulta se o token está autenticado "Validado"
+    """
     body = {'token': request.session.get('access_token')}
     response = requests.post('http://127.0.0.1:8000/api/v1/authentication/token/verify/', json=body)
     if response.status_code == 200:
@@ -18,16 +21,21 @@ def consulta_token(request) -> bool:
 
 
 
-def consulta(request, url=False):
+def consulta(request, url=False, return_token=False):
     url_base = 'http://127.0.0.1:8000/api/v1/' + url
-    return (
-        requests.get(
-            url_base, 
-            headers = {
-                'Authorization': f'Bearer {request.session.get('access_token')}'
-            }
-        )
-    )
+    acess_token = request.session.get('access_token')
+    if acess_token:
+        response = requests.get(
+                url_base, 
+                headers = {'Authorization': f'Bearer {acess_token}'}
+            )
+        
+        if return_token:
+            return response, acess_token
+        
+        return response
+    
+    return requests.get(url_base)
      
 
 
@@ -81,10 +89,15 @@ class CartView(generic.View):
 class ProductView(generic.View):
 
     def get(self, request, pk):
-        response = consulta(request, f'products/{pk}/')
+        if request.session.get('access_token'):
+            response, token = consulta(request, f'products/{pk}/', return_token=True)
+        else:
+            response = consulta(request, f'products/{pk}/')
+            token = ''
         return render(
             request,
             'ecommerce/product.html', {
-                'product': response.json()
+                'product': response.json(),
+                'token': token
             }
         )

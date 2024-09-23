@@ -2,108 +2,10 @@
 {% load static %}
 {% load custom_filters %}
 
+<link rel="stylesheet" href="{% static 'ecommerce/css/style_product.css' %}">
 
 
 {% block main %}
-<style>
-    * {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-}
-
-.quantity-container {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    margin-top: 38px;
-}
-
-.quantity-selector {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin: 0 10px;
-}
-
-.quantity-selector button {
-    /* width: 30px; */
-    /* height: 30px; */
-    border: none;
-    background-color: #f4f4f4;
-    cursor: pointer;
-    /* font-size: 20px; */
-}
-
-.quantity-selector button:hover {
-    background-color: #e0e0e0;
-}
-
-.quantity-input {
-    width: 50px;
-    height: 30px;
-    text-align: center;
-    border: none;
-    font-size: 16px;
-}
-
-.quantity-input:focus {
-    outline: none;
-}
-
-.available {
-    color: #666;
-    font-size: 14px;
-}
-
-
-
-
-.button-container {
-    display: flex;
-    margin-top: 38px;
-    gap: 15px;
-}
-
-button {
-    font-size: 16px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-outline {
-    background-color: #fff;
-    color: #e65100;
-    border: 2px solid #e65100;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.btn-outline:hover {
-    background-color: #fff5f0;
-}
-
-.btn-filled {
-    background-color: #e65100;
-    color: #fff;
-    border: none;
-}
-
-.btn-filled:hover {
-    background-color: #d84315;
-}
-
-.cart-icon {
-    font-size: 20px;
-}
-
-</style>
 
     <section id="product-select">
 
@@ -147,31 +49,100 @@ button {
 
 
             <div class="button-container">
-                <button class="btn-outline">
-                    <i class="cart-icon">🛒</i> Adicionar Ao Carrinho
-                </button>
-                <button class="btn-filled">Comprar Agora</button>
+                <button  id="add-to-cart-btn" class="btn-outline"> <i class="cart-icon">🛒</i> Adicionar Ao Carrinho </button>
+                <button id="buy-now-btn" class="btn-filled">Comprar Agora</button>
             </div>
         </div>
     </section>
 
+<script src="{% static 'ecommerce/js/scripts_base.js' %}"></script>
 
 <script>
-    document.querySelector('.btn-minus').addEventListener('click', function () {
-    const input = document.querySelector('.quantity-input');
-    let value = parseInt(input.value);
-    if (value > 1) {
-        input.value = value - 1;
-    }
-});
+    document.addEventListener('DOMContentLoaded', function () {
 
-document.querySelector('.btn-plus').addEventListener('click', function () {
-    const input = document.querySelector('.quantity-input');
-    let value = parseInt(input.value);
-    if (value < input.max) {
-        input.value = value + 1;
+        // Adicionar eventos de clique apenas após o DOM ser completamente carregado
+        document.querySelector('.btn-minus').addEventListener('click', function () {
+            const input = document.querySelector('.quantity-input');
+            let value = parseInt(input.value);
+            if (value > 1) {
+                input.value = value - 1;
+            }
+        });
+    
+        document.querySelector('.btn-plus').addEventListener('click', function () {
+            const input = document.querySelector('.quantity-input');
+            let value = parseInt(input.value);
+            if (value < input.max) {
+                input.value = value + 1;
+            }
+        });
+    
+       
+    
+        // Adicionar evento de clique ao botão "Adicionar ao Carrinho"
+        document.getElementById('add-to-cart-btn').addEventListener('click', function () {
+    
+    
+            if (isLoggedIn()) {
+                AddProductCart()
+            } else {
+                window.location.href = '/login/';
+            }
+        });
+    
+    
+        document.getElementById('buy-now-btn').addEventListener('click', function () {
+    
+            if (isLoggedIn()) {
+                AddProductCart()
+                window.location.href = '/cart/';
+            } else {
+                window.location.href = '/login/';
+            }
+        });
+    });
+    
+    // Função para verificar se o usuário está logado com base no username
+    function isLoggedIn() {
+        const usernameElement = document.querySelector('#user span'); // Verifica o elemento com o username
+        console.log('Verificando se o usuário está logado...');
+        return usernameElement && usernameElement.textContent.trim() !== ''; // Verifica se o conteúdo do span não está vazio
     }
-});
+
+
+
+    function AddProductCart() {
+        var token = '{{ token }}'
+        console.log(token)
+        if (token) {
+
+            const quantityInput = document.querySelector('.quantity-input');
+            const quantityValue = quantityInput.value;
+
+            var url = 'http://127.0.0.1:8000/api/v1/cart/product/{{ product.id }}/quantity/' + quantityValue + '/';
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer '+ token,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Produto adicionado ao carrinho:', data);
+                // releaseCart()
+            })
+            .catch(error => {
+                console.error('Erro ao adicionar ao carrinho:', error); 
+            });
+        }
+        else {
+            window.location.href = '/login/';
+        }
+
+
+    }
+    
 
 </script>
 
