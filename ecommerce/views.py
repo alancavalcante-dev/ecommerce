@@ -23,19 +23,22 @@ def consulta_token(request) -> bool:
 
 def consulta(request, url=False, return_token=False):
     url_base = 'http://127.0.0.1:8000/api/v1/' + url
-    acess_token = request.session.get('access_token')
-    if acess_token:
+    if not consulta_token(request):
+        if return_token: 
+            return requests.get(url_base), []
+        else:
+            return requests.get(url_base)
+    else:
+        access_token = request.session.get('access_token')
         response = requests.get(
                 url_base, 
-                headers = {'Authorization': f'Bearer {acess_token}'}
-            )
-        
+                headers = {'Authorization': f'Bearer {access_token}'}
+            )  
         if return_token:
-            return response, acess_token
-        
+            return response, access_token
         return response
     
-    return requests.get(url_base)
+    
      
 
 
@@ -52,7 +55,6 @@ class HomeView(generic.View):
             request, 
             'products/' + f'?search={search}' if search else 'products/'
         ).json()
-
         
         for i in response:
             try:

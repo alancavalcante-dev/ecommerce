@@ -7,7 +7,10 @@
 {% block main %}
 <link rel="stylesheet" href="{% static 'ecommerce/css/style_cart.css' %}">
 
-    <h1>Cart</h1>
+    <h1>Carrinho</h1>
+
+    
+
 
     {% for i in items %}
             <div class="product-card">
@@ -33,5 +36,30 @@
             </div>
        
     {% endfor %}
+
+
+    <div id="total">
+        <div id="top-total">
+            <div>
+                <p>Total do carrinho (com frete): R$ 759,50 </p>
+            </div>
+            <div>
+                <p>Total do frete do carrinho: R$ 57,50</p>
+            </div>
+        </div>
+        <hr width="70%">
+
+        <div id="bottom-total">
+            <div id="left-total">      
+                <p>Selecionar Tudo</p>
+                <input type="checkbox"> 
+            </div>
+            
+            <div id="right-total">
+                <p>Total (0 item): R$ 0,00</p>
+                <input type="button" value="Continuar">
+            </div>
+        </div>
+    </div>  
 
 {% endblock %}
