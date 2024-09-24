@@ -1,6 +1,37 @@
 {% extends "ecommerce/base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+
 
 {% block main %}
-    <p>Cart</p>
-    {{ request.user.username }}
+<link rel="stylesheet" href="{% static 'ecommerce/css/style_cart.css' %}">
+
+    <h1>Cart</h1>
+
+    {% for i in items %}
+            <div class="product-card">
+                <a href="{% url 'product' pk=i.product.id %}">
+                <span id="{{ i.id }}" class="excluir-item">X</span>
+                <h3>{{ i.product.name }}</h4>
+                <section>
+                    <div>
+                        <h5>{{ i.product.seller.enterprise_name }}</h5>
+                        <img src="{{ i.product.image }}">
+                    </div>
+                    <div>
+                        <p class="freight">Frete: R$ {{ i.product.freight|format_brl }}</p>
+                        <p>Chegada: Até dia 28/09/2024</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <h4>R$ <b>{{ i.product.value|format_brl }}</b></h4>
+                        <p>Quantidade: <b>{{ i.quantity }}</b></p>
+                        <input type="checkbox">
+                    </div>
+                </section>
+                </a>
+            </div>
+       
+    {% endfor %}
+
 {% endblock %}

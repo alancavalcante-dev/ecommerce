@@ -79,9 +79,13 @@ class CartView(generic.View):
         if not validation:
             return redirect('login')
 
+        response = consulta(request, 'cart/').json()
+
         return render(
             request, 
-            'ecommerce/cart.html'
+            'ecommerce/cart.html', {
+                'items': response
+            }
         )
 
 
