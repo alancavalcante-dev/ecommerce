@@ -2,64 +2,140 @@
 {% load static %}
 {% load custom_filters %}
 
-
-
 {% block main %}
 <link rel="stylesheet" href="{% static 'ecommerce/css/style_cart.css' %}">
 
-    <h1>Carrinho</h1>
+<h1>Carrinho</h1>
 
-    
-
-
-    {% for i in items %}
-            <div class="product-card">
-                <a href="{% url 'product' pk=i.product.id %}">
-                <span id="{{ i.id }}" class="excluir-item">X</span>
-                <h3>{{ i.product.name }}</h4>
-                <section>
-                    <div>
-                        <h5>{{ i.product.seller.enterprise_name }}</h5>
-                        <img src="{{ i.product.image }}">
-                    </div>
-                    <div>
-                        <p class="freight">Frete: R$ {{ i.product.freight|format_brl }}</p>
-                        <p>Chegada: Até dia 28/09/2024</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <h4>R$ <b>{{ i.product.value|format_brl }}</b></h4>
-                        <p>Quantidade: <b>{{ i.quantity }}</b></p>
-                        <input type="checkbox">
-                    </div>
-                </section>
-                </a>
-            </div>
-       
-    {% endfor %}
-
-
-    <div id="total">
-        <div id="top-total">
+{% for i in items %}
+<div class="product-card">
+    <a href="{% url 'product' pk=i.product.id %}">
+        <span id="{{ i.id }}" class="excluir-item">X</span>
+        <h3>{{ i.product.name }}</h3>
+        <section>
             <div>
-                <p>Total do carrinho (com frete): R$ 759,50 </p>
+                <h5>{{ i.product.seller.enterprise_name }}</h5>
+                <img src="{{ i.product.image }}">
             </div>
             <div>
-                <p>Total do frete do carrinho: R$ 57,50</p>
+                <p class="freight">Frete: R$ {{ i.product.freight|format_brl }}</p>
+                <p>Chegada: Até dia 28/09/2024</p>
             </div>
-        </div>
-        <hr width="70%">
+            <div style="text-align: center;">
+                <h4>R$ <b class="product-value" data-value="{{ i.product.value }}">{{ i.product.value|format_brl }}</b></h4>
+                <p>Quantidade: <b>{{ i.quantity }}</b></p>
+                <input type="checkbox" class="product-checkbox">
+            </div>
+        </section>
+    </a>
+</div>
+{% endfor %}
 
-        <div id="bottom-total">
-            <div id="left-total">      
-                <p>Selecionar Tudo</p>
-                <input type="checkbox"> 
-            </div>
-            
-            <div id="right-total">
-                <p>Total (0 item): R$ 0,00</p>
-                <input type="button" value="Continuar">
-            </div>
+<div id="total">
+    <div id="top-total">
+        <div>
+            <p>Total do carrinho (com frete): R$ <span id="total-cart">0,00</span></p>
         </div>
-    </div>  
+        <div>
+            <p>Total do frete do carrinho: R$ <span id="total-freight">0,00</span></p>
+        </div>
+    </div>
+    <hr width="70%">
+
+    <div id="bottom-total">
+        <div id="left-total">
+            <p>Selecionar Tudo</p>
+            <input type="checkbox" id="select-all"> 
+        </div>
+
+        <div id="right-total">
+            <p>Total (<span id="item-count">0</span> item): <span id="total-value" style="color: rgb(255, 106, 0);">R$ 0,00</span></p>
+            <input type="button" value="Continuar">
+        </div>
+    </div>
+</div>
+
+<script>
+    // Função para formatar o valor no formato de moeda brasileira
+    function formatBRL(value) {
+        return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 });
+    }
+
+    // Função para calcular o total dos produtos e o total do frete
+    function calculateTotalAndFreight() {
+        let totalValue = 0;
+        let totalFreight = 0;
+
+        // Seleciona todos os valores dos produtos e soma-os
+        document.querySelectorAll('.product-value').forEach((valueElement) => {
+            const value = parseFloat(valueElement.dataset.value);
+            if (!isNaN(value)) {
+                totalValue += value;  // Somar valores diretamente sem arredondamento prévio
+            }
+        });
+
+        // Seleciona todos os valores de frete e soma-os
+        document.querySelectorAll('.freight').forEach((freightElement) => {
+            const freightText = freightElement.textContent.replace('Frete: R$ ', '').replace(',', '.').trim();
+            const freight = parseFloat(freightText);
+            if (!isNaN(freight)) {
+                totalFreight += freight;  // Somar valores diretamente sem arredondamento prévio
+            }
+        });
+
+        // Atualiza o total do carrinho (com frete)
+        const totalWithFreight = totalValue + totalFreight;
+        document.getElementById('total-cart').textContent = formatBRL(totalWithFreight);
+
+        // Atualiza o total do frete
+        document.getElementById('total-freight').textContent = formatBRL(totalFreight);
+    }
+
+    // Função para calcular o valor total dos itens selecionados
+    function updateSelectedTotal() {
+        let total = 0;
+        let itemsSelected = 0;
+
+        // Itera sobre todos os checkboxes para verificar se estão selecionados
+        document.querySelectorAll('.product-checkbox').forEach((checkbox) => {
+            if (checkbox.checked) {
+                const valueElement = checkbox.closest('.product-card').querySelector('.product-value');
+                const value = parseFloat(valueElement.dataset.value);
+                if (!isNaN(value)) {
+                    total += value;  // Somar valores diretamente sem arredondamento prévio
+                }
+                itemsSelected++;
+            }
+        });
+
+        // Atualizar o valor total e a quantidade de itens selecionados no DOM
+        document.getElementById('total-value').textContent = formatBRL(total);
+        document.getElementById('item-count').textContent = itemsSelected;
+    }
+
+    // Adicionar eventos para checkboxes e botão "Selecionar Tudo"
+    function setupCheckboxListeners() {
+        // Selecionar ou desmarcar todos os checkboxes ao alterar o "Selecionar Tudo"
+        document.getElementById('select-all').addEventListener('change', function () {
+            const checkboxes = document.querySelectorAll('.product-checkbox');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = this.checked;
+            });
+            updateSelectedTotal();
+        });
+
+        // Atualizar o total ao selecionar/desmarcar checkboxes individuais
+        document.querySelectorAll('.product-checkbox').forEach((checkbox) => {
+            checkbox.addEventListener('change', updateSelectedTotal);
+        });
+    }
+
+    // Executar as funções quando a página carregar
+    document.addEventListener('DOMContentLoaded', function () {
+        calculateTotalAndFreight();  // Calcular total geral e frete
+        setupCheckboxListeners();    // Configurar eventos de checkbox
+    });
+</script>
+
 
 {% endblock %}
