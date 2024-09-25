@@ -102,11 +102,20 @@ header form div {
     background-color: #05ac88;
 }
 
+#cart {
+    position: relative;
+}
+
+
+
+
+
 .auth-user {
     display: block;
     text-decoration: none;
     color: white;
 }
+
 
 
 

@@ -142,7 +142,7 @@ main {
 }
 
 #right-total input {
-    background-color: rgb(2, 183, 180);
+    background-color: #0ec5a1;
     color: white;
     padding: 0px 14px;
     font-size: 16px;
@@ -154,6 +154,6 @@ main {
 
 
 #right-total input:hover {
-    background-color: rgb(66, 215, 212);
+    background-color: #45d6b9;
 
 }
