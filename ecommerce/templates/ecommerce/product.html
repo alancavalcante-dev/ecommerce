@@ -24,11 +24,90 @@
 
             <div id="review-product" class="display-flex-align-center">
                 <div>
-                    <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
-                    <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
-                    <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
-                    <img src="{% static 'ecommerce/images/reviews/star-50.png' %}" alt="">
-                    <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                    {% if product.rate == None or product.rate >= 0 and product.rate <= 0.4 %}
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt=""> 
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+        
+                    {% elif product.rate >= 0.5 and product.rate <= 0.9 %}
+                        <img src="{% static 'ecommerce/images/reviews/star-50.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt=""> 
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+
+                    {% elif product.rate >= 1 and product.rate <= 1.4 %}
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt=""> 
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+
+                    {% elif product.rate >= 1.5 and product.rate <= 1.9 %}
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-50.png' %}" alt=""> 
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+
+                    {% elif product.rate >= 2 and product.rate <= 2.4 %}
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+
+                    {% elif product.rate >= 2.5 and product.rate <= 2.9 %}
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-50.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+
+                    {% elif product.rate >= 3 and product.rate <= 3.4 %}
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+
+                    {% elif product.rate >= 3.5 and product.rate <= 3.9 %}
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt=""> 
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-50.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+
+                    {% elif product.rate >= 4 and product.rate <= 4.4 %}
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt=""> 
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-0.png' %}" alt="">
+
+                    {% elif product.rate >= 4.5 and product.rate <= 4.9 %}
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt=""> 
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-50.png' %}" alt="">
+
+                    {% elif product.rate == 5 %}
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt=""> 
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+                        <img src="{% static 'ecommerce/images/reviews/star-100.png' %}" alt="">
+
+                    {% else %}
+                        {{ product.rate.rating }}
+
+                    {% endif %}
+            
+
+           
                 </div>
                 <p>Compras: 1.4 mil</p>
             </div>

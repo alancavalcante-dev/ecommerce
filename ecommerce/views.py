@@ -89,6 +89,7 @@ class CartView(generic.View):
                 'items': response
             }
         )
+    
 
 
 
@@ -100,6 +101,7 @@ class ProductView(generic.View):
         else:
             response = consulta(request, f'products/{pk}/')
             token = ''
+        
         return render(
             request,
             'ecommerce/product.html', {
