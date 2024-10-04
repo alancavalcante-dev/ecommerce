@@ -109,3 +109,22 @@ class ProductView(generic.View):
                 'token': token
             }
         )
+
+
+
+class UserView(generic.View):
+
+    def get(self, request, pk):
+        if request.session.get('access_token'):
+            response, token = consulta(request, f'products/{pk}/', return_token=True)
+        else:
+            response = consulta(request, f'products/{pk}/')
+            token = ''
+        
+        return render(
+            request,
+            'ecommerce/product.html', {
+                'product': response.json(),
+                'token': token
+            }
+        )
