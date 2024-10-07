@@ -43,7 +43,7 @@
             </a>
 
             {% if username %}
-                <a id="user" class="auth-user" href="#"><span>{{ username }}</span></a>
+                <a id="user" class="auth-user" href="{% url 'profile' %}"><span>@{{ username }}</span></a>
                 <a class="auth-user" href="{% url 'logout' %}"><span> Sair </span></a>
             {% else %}         
                 <a class="auth-user" href="{% url 'login' %}">Entrar/Registrar</a>   

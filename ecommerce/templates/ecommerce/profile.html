@@ -1,0 +1,95 @@
+{% extends "ecommerce/base.html" %}
+{% load static %}
+
+
+{% block main %}
+
+
+<style>
+    label {
+        display: block;
+        margin-top: 15px;
+        color: rgb(65, 65, 65);
+    }
+
+    input[type="text"] {
+        display: block;
+        padding: 4px 8px;
+        margin-top: 6px;
+        width: 230px;
+    }
+
+    input[type="password"] {
+        display: block;
+        padding: 4px 8px;
+        margin-top: 8px;
+        width: 230px;
+    } 
+
+
+    #salvar-form-profile {
+        display: block;
+        margin: 0 auto;
+        margin-top: 15px;
+        font-size: 17px;
+        background-color: rgb(35, 156, 35);
+        color: white;
+        padding: 3px 6px;
+        border: 0px;
+        cursor: pointer;
+        border-radius: 4px;
+    } 
+
+    #salvar-form-profile:hover {
+        background-color: rgb(99, 179, 99);
+    }
+
+
+    form section {
+        display: flex;
+        text-align: center;
+        gap: 15px;
+    }
+
+    #form-profile {
+        background-color: white;
+        width: 380px;
+        border-radius: 4px;
+        margin: 0 auto;
+        padding: 15px;
+    }
+
+    #form-profile h1 {
+        margin: 0;
+        margin-bottom: 7px;
+    }
+</style>
+
+<form id="form-profile" action="{% url 'profile' %}" method="POST">
+
+    <h1>Perfil</h1>
+
+    <section>
+        <div>
+            <label for="username">Username</label> 
+            <label for="first_name">Primeiro nome</label> 
+            <label for="last_name">Último nome</label> 
+            <label for="email">Email</label> 
+            <label for="now-senha">Senha</label> 
+            <label for="new-senha">Nova senha</label> 
+        </div>
+
+        <div>
+            <input type="text" id="username" value="{{ profile.username }}"> 
+            <input type="text" id="first_name" value="{{ profile.first_name }}">  
+            <input type="text" id="last_name" value="{{ profile.last_name }}">
+            <input type="text" id="email" value="{{ profile.email }}">
+            <input type="password" id="now-senha">
+            <input type="password" id="new-senha">
+        </div>
+    </section>
+
+    <input id="salvar-form-profile" type="submit" value="Salvar">
+</form>
+
+{% endblock %}

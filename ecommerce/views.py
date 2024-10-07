@@ -128,3 +128,29 @@ class UserView(generic.View):
                 'token': token
             }
         )
+    
+
+
+
+class ProfileView(generic.View):
+
+    def get(self, request):
+        validation = consulta_token(request)
+        if not validation:
+            return redirect('login')
+        response = consulta(request, 'me/').json()
+        
+        for i in response:
+            response = {
+                'username': i['username'],
+                'first_name': i['first_name'],
+                'last_name': i['last_name'],
+                'email': i['email'],
+                'password': i['password']
+            }
+        return render(
+            request,
+            'ecommerce/profile.html', {
+                'profile': response,
+            }
+        )
